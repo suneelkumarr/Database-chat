@@ -15,6 +15,11 @@ const io = require("socket.io")(server,{
 
 const Rooms = require("./model/room.model")
 
+//Routes
+
+// const room = require("./Routes/room.routes")
+const user= require("./Routes/user.routes")
+
 //view js connected
 app.set('views', './views')
 app.set('view engine', 'ejs')
@@ -36,10 +41,26 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopol
 
 let rooms = {}
 
+
+
+app.use('/',require('./Routes/index.route'));
+app.use('/user',require("./Routes/user.routes"));
+
+
+// app.use("/rooms", room)
+
 //indexfile
-app.get('/',(req,res)=>{ 
-    res.render('index', { rooms: rooms })
-});
+// app.get('/',(req,res)=>{ 
+//     res.render('index', { rooms: rooms })
+// });
+
+app.use('/', (req, res)=>{ 
+  res.render('index')
+})
+
+// app.get('/login',(req, res)=>{ 
+//   res.render('login')
+// })
 
 
 //post request

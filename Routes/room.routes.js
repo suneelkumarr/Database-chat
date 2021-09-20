@@ -9,4 +9,4 @@ router.put('/:id', rooms.update)
 router.delete('/:id',rooms.delete)
 
 
-export default router
+module.exports = router;
